@@ -1,0 +1,52 @@
+package main;
+
+import javax.swing.JOptionPane;
+
+public class Controller {
+	private int correct= 0;
+	private int total=0;
+	private Questions[] q;
+	//A constructor which picks a random type of question to make.
+	public Controller(int num, int type) {
+		q = new Questions[num];
+		if(type == 4) {
+			int rng;
+			for(int i = 0; i < q.length; i++) {
+				rng = (int)(4 * Math.random());
+				q[i] = new Questions(rng);
+			}
+		}
+		else {
+				for(int i = 0; i < q.length; i++) {
+					q[i] = new Questions(type);
+				}
+		}
+	}
+	//A method to create the menu and tell teh player their wrong answers.
+	public void menu() {
+		int answer = 1;
+		boolean c = true;
+		int curQ = 0;
+
+		while(c) {
+			System.out.println("1.5");
+			answer = Integer.valueOf(JOptionPane.showInputDialog( q[curQ].toString()));
+			System.out.println("2");
+			if(answer == q[curQ++].getAns()) {
+				System.out.println("3");
+				correct++;
+				total++;
+			}
+			else{
+				System.out.println("4");
+				total++;
+			}
+			System.out.println("5");
+			if(curQ == q.length) {
+				System.out.println("6");
+				c = false;
+				JOptionPane.showMessageDialog(null, "You got a total of " + correct + " questions right, out of " + total + " questions." + "\n" + ((double)correct*100)/total + "%");
+			}
+		}
+	}
+}
