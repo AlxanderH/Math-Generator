@@ -1,0 +1,71 @@
+package main;
+
+public class Questions {
+	private int first, sec, ans = 1;
+	private String[] operations = {"+", "-", "*", "/"};
+	private int type;
+	//This is a method that generates the questions when a random number is chosen.
+	public Questions(int b) {
+		type = b;
+		if(b == 0) {
+			generateAdditionQuestion();
+		}
+		else if(b ==1) {
+			generateSubtractionQuestion();
+		}
+		else if(b ==2) {
+			generateMultiplicationQuestion();
+		}
+		else if(b==3) {
+			generateDivisionQuestion();
+		}
+	}
+	
+	
+	
+	
+	//This method generates a multiplication question.
+	public void generateMultiplicationQuestion() {
+		first = (int) (Math.random()*100);
+		sec = (int) (Math.random()*100);
+		ans = first*sec;
+	}
+	//This method generates a addition question.
+	public void generateAdditionQuestion() {
+		first = (int)(Math.random() * 100);
+		sec = (int)(Math.random() * 100);
+		ans = first + sec;
+	}
+	//This method generates a subbtraction question.
+	public void generateSubtractionQuestion() {
+		first = (int) (Math.random()*100);
+		sec = (int) (Math.random()*100);
+		   if(first < sec) {
+		       int temp = first;
+		       first = sec;
+		       sec = temp;
+		   }
+		ans = first-sec;
+	}
+  //This method generates a division question.
+	public void generateDivisionQuestion() {
+	   first = (int) ((Math.random()*100)+1);
+	   sec = (int) ((Math.random()*100)+1);
+	   
+	   if(first < sec) {
+	       int temp = first;
+	       first = sec;
+	       sec = temp;
+	   }
+	   first -= (first % sec);
+	   ans = first/sec;
+	}
+	
+	public int getAns() {
+		return ans;
+	}
+	
+	public String toString() {
+		return first + " " + operations[type] + " " + sec + " =";
+	}
+}
