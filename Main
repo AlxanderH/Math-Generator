@@ -1,0 +1,29 @@
+package main;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+	
+	
+	//This is a main method which asks the user how many questions they want to do and what type of questions they want to do.
+	public static int opt(Object[] options, String msg, String title) {
+		return JOptionPane.showOptionDialog(null, msg, title, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, 0);
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		int numQ;
+		int typeQ;
+		
+		numQ = Integer.parseInt(JOptionPane.showInputDialog("How many questions would you like to do?"));
+		
+		String[] options = {"Addition", "Subtraction", "Multiplication", "Division", "All"};
+		
+		typeQ = opt(options, "What type of Question do you want to do?", "Choose a Question Type");
+		
+		Controller o = new Controller(numQ, typeQ);
+		o.menu();
+	}
+}
+
